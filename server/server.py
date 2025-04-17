@@ -595,7 +595,7 @@ def create_mcp_server(
             return [
                 types.Tool(
                     name="browser_use",
-                    description="Performs a browser action and returns the complete result directly (patient mode active)",
+                    description="Opens a browser to perform tasks requested by user. (e.g. go to www.google.com and find a cat blog and click on first blog and give me the content)",
                     inputSchema={
                         "type": "object",
                         "required": ["url", "action"],
@@ -606,25 +606,11 @@ def create_mcp_server(
                             },
                             "action": {
                                 "type": "string",
-                                "description": "Action to perform in the browser",
+                                "description": "The sequence of actions to be done. (e.g. Go to cat blog and click on first blog and give me the content)",
                             },
                         },
                     },
-                ),
-                types.Tool(
-                    name="browser_get_result",
-                    description="Gets the result of an asynchronous browser task (not needed in patient mode as browser_use returns complete results directly)",
-                    inputSchema={
-                        "type": "object",
-                        "required": ["task_id"],
-                        "properties": {
-                            "task_id": {
-                                "type": "string",
-                                "description": "ID of the task to get results for",
-                            }
-                        },
-                    },
-                ),
+                )
             ]
         else:
             return [
